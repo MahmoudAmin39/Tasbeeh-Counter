@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/counter_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="8dp"
+        android:text="1"
+        android:textColor="#000"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/plus_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="128dp"
+        android:background="@drawable/circle_green"
+        android:text="+1"
+        android:textColor="#00ff00"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/counter_number" />
+
+    <Button
+        android:id="@+id/reset_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/circle_red"
+        android:text="0"
+        android:textColor="#ff0000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/plus_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/plus_btn" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/reset_btn"
+        app:layout_constraintStart_toStartOf="@+id/plus_btn"
+        app:layout_constraintTop_toBottomOf="@+id/plus_btn">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/no_reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Reset." />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/reset_33_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset after 33 counts." />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/reset_100_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset after 100 counts." />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.constraint.ConstraintLayout>
