@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">المسبحة الالكترونية</string>
+    <string name="language">Language</string>
+    <string name="settings">Settings</string>
+    <string name="reset">Reset</string>
+
+    <string-array name="counter_options_items">
+        <item>Don\'t reset</item>
+        <item>Reset after 33 counts.</item>
+        <item>Reset after 100 counts.</item>
+    </string-array>
 </resources>
