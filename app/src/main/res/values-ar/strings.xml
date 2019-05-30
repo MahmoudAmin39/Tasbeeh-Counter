@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">السبحة</string>
+    <string name="language">اللغة</string>
+    <string name="settings">الخصائص</string>
+    <string name="reset">الاعادة</string>
+
+    <string-array name="counter_options_items">
+        <item>لا تعيد الي الصفر تلقائيا</item>
+        <item>قم بالاعادة الي الصفر بعد 33 عدة</item>
+        <item>قم بالاعادة الي الصفر بعد 100 عدة</item>
+    </string-array>
+</resources>

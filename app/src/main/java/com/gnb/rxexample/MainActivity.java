@@ -1,10 +1,12 @@
 package com.gnb.rxexample;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,20 +26,30 @@ public class MainActivity extends AppCompatActivity {
     Integer count = 0;
     private Boolean is33Reset = false;
     private Boolean is100Reset = false;
+    private String languageCode = "";
 
     BehaviorSubject<Integer> counterSubject = BehaviorSubject.createDefault(count);
     Disposable disposable;
 
     private String[] counterResetOptions;
+    private String[] languageOptions;
+
+    static String LANGUAGE = "language";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Get selected language
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        languageCode = preferences.getString(LANGUAGE, "ar");
+        changeLanguage();
         setContentView(R.layout.activity_main);
+
         container = findViewById(R.id.container);
         textView = findViewById(R.id.counter_number);
 
         counterResetOptions = getResources().getStringArray(R.array.counter_options_items);
+        languageOptions = getResources().getStringArray(R.array.language_options_items);
 
         // Counter observation logic
         disposable = counterSubject.subscribe(
@@ -101,8 +113,40 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }).show();
+                return true;
+            case R.id.menu_language:
+                int checkedLanguage = 0;
+                if (languageCode.equals("en")) {
+                    checkedLanguage = 1;
+                }
+                new AlertDialog.Builder(this).setSingleChoiceItems(languageOptions, checkedLanguage, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            languageCode = "ar";
+                            changeLanguage();
+                        } else {
+                            languageCode = "en";
+                            changeLanguage();
+                        }
+                        dialog.dismiss();
+                    }
+                }).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void changeLanguage() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        android.content.res.Configuration conf = getResources().getConfiguration();
+        conf.setLocale(new Locale(languageCode));
+        getResources().updateConfiguration(conf, dm);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
+        counterResetOptions = getResources().getStringArray(R.array.counter_options_items);
+        getPreferences(MODE_PRIVATE).edit().putString(LANGUAGE, languageCode).apply();
     }
 
     @Override
